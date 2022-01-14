@@ -10,15 +10,45 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:clipcycle.helloWorld"
+        "onCommand:clipcycle.copy",
+		"onCommand:clipcycle.cut",
+		"onCommand:clipcycle.cyclePaste"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "clipcycle.helloWorld",
-				"title": "Hello World"
+				"command": "clipcycle.copy",
+				"title": "Clipcycle Copy"
+			},
+			{
+				"command": "clipcycle.cut",
+				"title": "Clipcycle Cut"
+			},
+			{
+				"command": "clipcycle.cyclePaste",
+				"title": "Clipcycle Cycle Paste"
 			}
+		],
+		"keybindings": [
+            {
+                "command": "clipcycle.copy",
+                "key": "ctrl+c",
+                "mac": "cmd+c",
+                "when": "editorTextFocus"
+            },
+			{
+                "command": "clipcycle.cut",
+                "key": "ctrl+x",
+                "mac": "cmd+x",
+                "when": "editorTextFocus"
+            },
+			{
+                "command": "clipcycle.cyclePaste",
+                "key": "ctrl+shift+v",
+                "mac": "cmd+shift+v",
+                "when": "editorTextFocus"
+            }
 		]
 	},
 	"scripts": {
