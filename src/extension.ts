@@ -37,11 +37,13 @@ export function activate(context: vscode.ExtensionContext) {
 			if (last) {	
 				await vscode.env.clipboard.writeText(last);
 				
+				var oldSelections = editor.selections.map(s => new vscode.Selection(s.anchor, s.end));
+
 				await vscode.commands.executeCommand("editor.action.clipboardPasteAction");
 
-				editor.selections = editor.selections.map(s => new vscode.Selection(
-					s.anchor.line,
-					s.anchor.character - last.length,
+				editor.selections = editor.selections.map((s, i) => new vscode.Selection(
+					oldSelections[i].anchor.line,
+					oldSelections[i].anchor.character,
 					s.anchor.line,
 					s.anchor.character));
 			}
